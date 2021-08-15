@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 public class ApplicationUserController {
 @Autowired
-UserDetailsServiceImplemnet userDetailsServiceImplemnet;
+UserDetailsServiceImpl userDetailsServiceImplemnet;
     @Autowired
     ApplicationUserRepository applicationUserRepository;
     @Autowired
@@ -29,10 +29,10 @@ UserDetailsServiceImplemnet userDetailsServiceImplemnet;
         //model.addAttribute("userDetails", userDetails);
         return ("");
     }
-    @GetMapping("/login")
-    public String getSignInPage(){
-        return "signin.html";
-    }
+//    @GetMapping("/login")
+//    public String getSignInPage(){
+//        return "signin.html";
+//    }
 
     @PostMapping("/signup")
     public RedirectView signUp(@RequestParam(value="username") String username, @RequestParam(value="password") String password){
