@@ -29,15 +29,15 @@ UserDetailsServiceImpl userDetailsServiceImplemnet;
         //model.addAttribute("userDetails", userDetails);
         return ("");
     }
-//    @GetMapping("/login")
-//    public String getSignInPage(){
-//        return "signin.html";
-//    }
+    @GetMapping("/login")
+    public String getSignInPage(){
+        return "signin.html";
+    }
 
     @PostMapping("/signup")
-    public RedirectView signUp(@RequestParam(value="username") String username, @RequestParam(value="password") String password){
-       // ApplicationUser newUser = new ApplicationUser(username,bCryptPasswordEncoder.encode(password));
-       // applicationUserRepository.save(newUser);
+    public RedirectView signUp(@RequestParam(value="username") String username, @RequestParam(value="password") String password,@RequestParam(value = "firstname")String firstname,@RequestParam(value = "lastname")String lastname,@RequestParam(value = "dateofbirth")Integer dateofbirth,@RequestParam(value = "bio")String bio){
+        ApplicationUser newUser = new ApplicationUser(username,bCryptPasswordEncoder.encode(password),firstname,lastname,dateofbirth,bio);
+        applicationUserRepository.save(newUser);
         return new RedirectView("/login");
     }
 
