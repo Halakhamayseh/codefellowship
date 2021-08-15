@@ -4,7 +4,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Date;
+//import java.util.Date;// we test and it is not working for dateofbirth
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -29,7 +29,9 @@ public class ApplicationUser implements UserDetails {
 
     }
 
-    public ApplicationUser(){}
+    public ApplicationUser(){
+        //default one
+    }
 
     public void setUsername(String username){
         this.username = username;

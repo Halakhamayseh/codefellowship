@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.xml.crypto.Data;
+import java.util.Date;
+
 @Controller
 public class ApplicationUserController {
 @Autowired
@@ -33,9 +36,13 @@ UserDetailsServiceImpl userDetailsServiceImplemnet;
     public String getSignInPage(){
         return "signin.html";
     }
+    @GetMapping("/")
+    public String getHomePage(){
+        return "home.html";
+    }
 
     @PostMapping("/signup")
-    public RedirectView signUp(@RequestParam(value="username") String username, @RequestParam(value="password") String password,@RequestParam(value = "firstname")String firstname,@RequestParam(value = "lastname")String lastname,@RequestParam(value = "dateofbirth")Integer dateofbirth,@RequestParam(value = "bio")String bio){
+    public RedirectView signUp(@RequestParam(value="username") String username, @RequestParam(value="password") String password, @RequestParam(value = "firstname")String firstname, @RequestParam(value = "lastname")String lastname, @RequestParam(value = "dateofbirth") Integer dateofbirth, @RequestParam(value = "bio")String bio){
         ApplicationUser newUser = new ApplicationUser(username,bCryptPasswordEncoder.encode(password),firstname,lastname,dateofbirth,bio);
         applicationUserRepository.save(newUser);
         return new RedirectView("/login");
