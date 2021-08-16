@@ -1,5 +1,5 @@
 # codefellowship
-### Labs 16 : CodeFellowship Login, Profiles & Posts
+### Labs 16 && lab 17 : CodeFellowship Login, Profiles & Posts
 #### Feature Tasks
 Build an app that allows users to create their profile on CodeFellowship.
 
