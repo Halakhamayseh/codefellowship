@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<!--    <link rel="stylesheet" href="../css/reset.css">-->
-<!--    <link rel="stylesheet" href="../css/Style.css">-->
+<!--    <link rel="stylesheet" href="/css/reset.css">-->
     <link th:href="@{./css/reset.css}" rel="stylesheet">
     <link th:href="@{./css/style.css}" rel="stylesheet">
 </head>
 <body>
-<header>
-    <div th:insert="fragmentHeader :: header"></div>
-    <h3>Welcome To App</h3>
-    <h3 th:text="${usernamePrincipal}"></h3>
-</header>
+<h2>You Have To Log In </h2>
+<div th:insert="fragmentHeader :: header"></div>
+
 </body>
 </html>
