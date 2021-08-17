@@ -53,13 +53,21 @@ img{
 /* nav{
     background-color: gray;
 } */
-
-
+ul{
+ display: flex;
+ gap: 6px;
+ list-style:none;
+ justify-content: space-evenly;
+}
 button{
     background-color: blue;
 }
+.header{
+background:gray;
+padding: 5px;
+}
 a{
-    color: black;
+    color: whitesmoke;
 }
 .button{
     display: flex;
