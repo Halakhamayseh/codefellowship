@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class ApplicationUserController {
@@ -71,5 +72,24 @@ UserDetailsServiceImpl userDetailsServiceImplemnet;
         Post newpost= new Post(body,applicationUserRepository.findByUsername(p.getName()));
         postRepository.save(newpost);
         return new RedirectView("/profile");
+    }
+    @PostMapping ("/follow/{id}")
+    public RedirectView getfollow(Principal p,@PathVariable Integer id) {
+        ApplicationUser applicationUserwhoisfollowMe = applicationUserRepository.findByUsername(p.getName());
+        ApplicationUser applicationUserwhoisfollowFollowed = applicationUserRepository.findById(id).get();
+        applicationUserwhoisfollowMe.getFollowers().add(applicationUserwhoisfollowFollowed);
+       applicationUserwhoisfollowFollowed.getFollowing().add(applicationUserwhoisfollowMe);
+        applicationUserRepository.save(applicationUserwhoisfollowMe);
+        applicationUserRepository.save(applicationUserwhoisfollowFollowed);
+
+        return new RedirectView("/feed");
+    }
+    @GetMapping("/feed")
+    public String getAllFeed(Principal p, Model model){
+        model.addAttribute("usernamePrincipal",p.getName());
+        ApplicationUser applicationUserwhoisfollowMe=applicationUserRepository.findByUsername(p.getName());
+        List<ApplicationUser>following=applicationUserwhoisfollowMe.getFollowers();
+        model.addAttribute("feeds",following);
+        return "feed.html";
     }
 }
