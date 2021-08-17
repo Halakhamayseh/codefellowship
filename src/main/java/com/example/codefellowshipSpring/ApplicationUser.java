@@ -3,6 +3,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 //import java.util.Date;// we test and it is not working for dateofbirth
@@ -22,6 +23,17 @@ public class ApplicationUser implements UserDetails {
     String bio;
 @OneToMany(mappedBy = "applicationUser")
     List<Post> allposts;
+    /////following part 1 relation many to many///
+@ManyToMany(cascade = {CascadeType.ALL})
+@JoinTable(name = "Followers_Following",joinColumns = {@JoinColumn(name = "follower_id")},inverseJoinColumns = {@JoinColumn(name = "following_id")})
+List<ApplicationUser> followers=new ArrayList<>();
+/////following part 2 relation many to many///
+@ManyToMany(mappedBy = "followers")
+List<ApplicationUser> following=new ArrayList<>();
+public ApplicationUser(){
+    //default one
+}
+
     public ApplicationUser(String username, String password, String firstname, String lastname, String dateofbirth,String bio) {
         this.username = username;
         this.password = password;
@@ -32,8 +44,20 @@ public class ApplicationUser implements UserDetails {
 
     }
 
-    public ApplicationUser(){
-        //default one
+    public List<ApplicationUser> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<ApplicationUser> followers) {
+        this.followers = followers;
+    }
+
+    public List<ApplicationUser> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(List<ApplicationUser> following) {
+        this.following = following;
     }
 
     public List<Post> getAllposts() {

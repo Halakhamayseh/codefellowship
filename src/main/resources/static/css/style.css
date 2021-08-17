@@ -28,15 +28,15 @@ body{
     padding: 20px;
     width:30%;
    align-items: center;
-   justify-content: space-evenly;
+   justify-content:space-between;
    border: 1px solid black;
    margin: auto;
 }
 .objectTow{
     background-color: gray;
-    width: 16%;
+    width: 25%;
     display: flex;
-    height: 80px;
+    height: 150px;
     flex-wrap: wrap;
     flex-direction: column;
     gap: 6px;
@@ -67,7 +67,7 @@ background:gray;
 padding: 5px;
 }
 a{
-    color: whitesmoke;
+    color: blue;
 }
 .button{
     display: flex;
